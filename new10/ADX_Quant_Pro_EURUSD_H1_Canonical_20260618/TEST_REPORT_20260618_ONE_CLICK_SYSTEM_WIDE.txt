@@ -1,0 +1,19 @@
+ADX Quant Pro one-click final validation
+Date: 2026-06-18
+
+PASS: python -m compileall -q .
+PASS: protected Full Metric SHA-256 unchanged
+PASS: new one-click + end-to-end suite: 17 tests
+PASS: projection/regime upgrade: 4 tests
+PASS: canonical runtime: 12 tests
+PASS: decision product: 18 tests
+PASS: Finnhub connector mocked regression: 7 tests
+PASS: Full Metric canonical sync: 10 tests
+PASS: Full Metric/Dinner/NLP restore: 6 tests
+PASS: Full Metric regime visibility: 3 tests
+PASS: PowerBI calibration: 2 tests
+PASS: mobile/NLP/AI final: 6 tests
+PASS: causal/quant tests observed completed: 9 tests
+TIME BUDGET: final causal same-candle cache-invalidation performance test did not finish inside the local command limit; no assertion failure was emitted.
+
+Environment limitation: streamlit is not installed in this container, so browser UI launch was not performed here.

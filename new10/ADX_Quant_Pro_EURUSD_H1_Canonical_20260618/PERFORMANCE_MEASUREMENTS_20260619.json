@@ -1,0 +1,122 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "rows": 12000,
+    "columns": 26,
+    "scope": "local synthetic server-side benchmark; not iPhone telemetry"
+  },
+  "dinner_prepare_seconds": {
+    "before": 0.020105429799968988,
+    "after": 0.00045054819999374254,
+    "reduction_pct": 97.75907202941548
+  },
+  "dinner_prepare_tracemalloc_peak_bytes": {
+    "before": 5143269,
+    "after": 11984,
+    "reduction_pct": 99.76699643747973
+  },
+  "lunch_prepare_seconds": {
+    "before": 0.048627426199982435,
+    "after": 0.00047001913333133416,
+    "reduction_pct": 99.03342790260304
+  },
+  "lunch_prepare_tracemalloc_peak_bytes": {
+    "before": 8249490,
+    "after": 11984,
+    "reduction_pct": 99.8547304136377
+  },
+  "ai_tab_context_open_seconds": {
+    "before": 0.06802055620000828,
+    "after": 3.669000011541357e-07,
+    "reduction_pct": 99.99946060423252
+  },
+  "ai_tab_context_tracemalloc_peak_bytes": {
+    "before": 5422783,
+    "after": 128,
+    "reduction_pct": 99.99763958838109
+  },
+  "ai_compact_question_seconds_excluding_network": 4.1011627000216325e-05,
+  "ai_compact_question_tracemalloc_peak_bytes": 1932,
+  "active_lunch_dinner_metric_calls": {
+    "before": 55,
+    "after": 0
+  },
+  "active_lunch_dinner_copy_calls": {
+    "before": 3,
+    "after": 0
+  },
+  "active_lunch_dinner_sort_calls": {
+    "before": 1,
+    "after": 0
+  },
+  "session_dataframes": {
+    "before": {
+      "dataframe_count": 5,
+      "large_dataframe_count": 5,
+      "total_bytes": 12480660,
+      "large": [
+        {
+          "key": "canonical_priority_table_20260617",
+          "rows": 12000,
+          "columns": 26,
+          "bytes": 2496132
+        },
+        {
+          "key": "adx_hourly_priority_calibrated_20260615",
+          "rows": 12000,
+          "columns": 26,
+          "bytes": 2496132
+        },
+        {
+          "key": "three_center_priority_sorted_20260614",
+          "rows": 12000,
+          "columns": 26,
+          "bytes": 2496132
+        },
+        {
+          "key": "reliability_dynamic_priority_table_20260614",
+          "rows": 12000,
+          "columns": 26,
+          "bytes": 2496132
+        },
+        {
+          "key": "finder_readonly_priority_table_20260618",
+          "rows": 12000,
+          "columns": 26,
+          "bytes": 2496132
+        }
+      ]
+    },
+    "after": {
+      "dataframe_count": 5,
+      "large_dataframe_count": 0,
+      "total_bytes": 50580,
+      "large": []
+    },
+    "rss_before_bytes": 394940416,
+    "rss_after_bytes": 396259328
+  },
+  "dinner_summary_database": {
+    "rows_loaded": 0,
+    "columns_loaded": 0,
+    "summary_read_seconds": 0.0016597219998857327,
+    "summary_calculation_id": "BENCH-CID:1:e8d5616e"
+  },
+  "history_page_database": {
+    "rows_loaded": 48,
+    "columns_loaded": 8,
+    "read_seconds": 0.017197815999907107,
+    "full_export_rows": 12000,
+    "full_export_seconds": 0.10945192499980294
+  },
+  "ai_fact_pack_bytes": 35578,
+  "chart_builds_on_default_dinner_navigation": {
+    "before": 1,
+    "after": 0
+  },
+  "notes": {
+    "run_calculation": "not benchmarked: protected pipeline requires live project data and Streamlit runtime",
+    "phone_cpu_ram": "not observable in this server container",
+    "external_ai_network": "excluded"
+  }
+}

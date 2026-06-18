@@ -1,0 +1,8 @@
+Version: new7-eurusd-h1-canonical-powerbi-low-heat-final-2026-06-19
+Build Date: 2026-06-19
+Base ZIP: 55b8051e-2696-4945-b8c2-a9aab5035a24.zip uploaded by user
+Base ZIP SHA-256: 7ca9dd2bcac0a29589b7fc279e5848f8c8caec73eeb5e8f77a00de7348ea602e
+Scope: Windows WinError 10054 prevention, future-row data-quality correction, automatic cached PowerBI opening, one canonical Full Metric 25-day display, one selected reverse-factor table, restored Medium/Higher regime standards, lazy exports, mobile low-heat rendering and cross-tab canonical synchronization
+Core protection: tabs/eurusd_h1_matrix.py remains byte-for-byte unchanged; protected Full Metric, Regime, Alpha, Delta, KNN, Greedy, NLP, Power BI, reliability and conflict formulas are reused
+Main entry point: app.py
+Validation: compileall PASS; 175/175 pytest PASS; Streamlit health/root PASS; cached PowerBI and Full Metric/Regime render smoke PASS

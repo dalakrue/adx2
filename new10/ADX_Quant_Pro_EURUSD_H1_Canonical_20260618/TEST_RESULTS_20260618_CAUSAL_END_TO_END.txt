@@ -1,0 +1,13 @@
+ADX Quant Pro / new7 final verification — 2026-06-18
+
+Baseline pytest: 67 passed
+Final pytest: 77 passed in 29.19s
+Python files compiled: 408
+Critical imports: 8 passed
+Streamlit AppTest: 0 exceptions
+Streamlit health endpoint: ok
+Protected Full Metric SHA-256:
+fe0797ab30f469f3ea748bc66a690b18a68aaf91306ac33c797bdcdcf6e60682
+Runtime: python-3.12
+Requirements entries parsed: 33
+Startup command: streamlit run app.py
