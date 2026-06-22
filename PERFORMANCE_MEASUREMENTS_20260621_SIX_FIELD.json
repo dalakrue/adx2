@@ -1,0 +1,425 @@
+{
+  "generated_at_utc": "2026-06-21T08:04:14.582437+00:00",
+  "environment": {
+    "python": "3.13.5",
+    "streamlit_available": false,
+    "process_pid": 13260
+  },
+  "scope": "Headless service/control-path benchmark. No network, no browser paint, no protected Run Calculation transaction.",
+  "measurements": [
+    {
+      "action": "Cold startup",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 20.9478,
+      "cpu_ms": 20.0,
+      "peak_alloc_kib": 2029.37,
+      "rss_delta_kib": 1856.0,
+      "notes": "Headless syntax-load proxy; Streamlit runtime unavailable in benchmark container."
+    },
+    {
+      "action": "Warm startup",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0163,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.55,
+      "rss_delta_kib": 0.0,
+      "notes": "Warm compiled-code reuse proxy."
+    },
+    {
+      "action": "Cold startup",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 23.6312,
+      "cpu_ms": 20.0,
+      "peak_alloc_kib": 2157.26,
+      "rss_delta_kib": 264.0,
+      "notes": "Headless syntax-load proxy; Streamlit runtime unavailable in benchmark container."
+    },
+    {
+      "action": "Warm startup",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0148,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.55,
+      "rss_delta_kib": 0.0,
+      "notes": "Warm compiled-code reuse proxy."
+    },
+    {
+      "action": "Menu open",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 7.7851,
+      "cpu_ms": 10.0,
+      "peak_alloc_kib": 662.15,
+      "rss_delta_kib": 0.0,
+      "notes": "Headless menu source parse; no browser layout timing."
+    },
+    {
+      "action": "Menu open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 9.8333,
+      "cpu_ms": 10.0,
+      "peak_alloc_kib": 803.35,
+      "rss_delta_kib": 0.0,
+      "notes": "Headless menu source parse; no browser layout timing."
+    },
+    {
+      "action": "Field 3 history open",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 10.7335,
+      "cpu_ms": 10.0,
+      "peak_alloc_kib": 560.59,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual bounded DataFrame query; before retains all columns, after projects selected columns."
+    },
+    {
+      "action": "Field 3 history open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 15.5608,
+      "cpu_ms": 10.0,
+      "peak_alloc_kib": 229.85,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual bounded DataFrame query; before retains all columns, after projects selected columns."
+    },
+    {
+      "action": "Copy Short",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.2227,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 3.29,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual canonical export service on identical representative generation."
+    },
+    {
+      "action": "Copy Short",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.8657,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 12.52,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual canonical export service on identical representative generation."
+    },
+    {
+      "action": "Copy All",
+      "variant": "before",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 1122.0828,
+      "cpu_ms": 1040.0,
+      "peak_alloc_kib": 6853.04,
+      "rss_delta_kib": 10844.0,
+      "notes": "Actual canonical export service on identical representative generation."
+    },
+    {
+      "action": "Copy All",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.6131,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 7.54,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual canonical export service on identical representative generation."
+    },
+    {
+      "action": "Field 1 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0177,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 1 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.02,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Field 2 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0169,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 2 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.019,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Field 3 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0187,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 3 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0189,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Field 4 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0196,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 4 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.021,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Field 5 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0164,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 5 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0176,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Field 6 open",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0183,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual non-widget/session-state load-gate callback; renderer cost is measured by relevant service rows."
+    },
+    {
+      "action": "Field 6 close",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0187,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.57,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual close callback; no renderer import or calculation transaction."
+    },
+    {
+      "action": "Refresh Data",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 11.3542,
+      "cpu_ms": 10.0,
+      "peak_alloc_kib": 137.19,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual public refresh orchestration with connector function injected; no network and no Run Calculation."
+    },
+    {
+      "action": "Refresh Data",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "No separate public Refresh Data action existed in the baseline menu."
+    },
+    {
+      "action": "AI simple question",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 2.7677,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 44.52,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual local lexical retrieval/planning/critic/calibration pipeline; settled DB evidence intentionally empty."
+    },
+    {
+      "action": "AI simple question",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Baseline assistant did not expose the same ten-stage grounded local pipeline."
+    },
+    {
+      "action": "AI complex question",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 2.8227,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 43.31,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual local lexical retrieval/planning/critic/calibration pipeline; settled DB evidence intentionally empty."
+    },
+    {
+      "action": "AI complex question",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Baseline assistant did not expose the same ten-stage grounded local pipeline."
+    },
+    {
+      "action": "Tab switching",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 0.0069,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.88,
+      "rss_delta_kib": 0.0,
+      "notes": "Session-state route update only; browser rerender not measured."
+    },
+    {
+      "action": "Tab switching",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Comparable browser rerender timing is unavailable without Streamlit."
+    },
+    {
+      "action": "Reduce RAM",
+      "variant": "after",
+      "status": "MEASURED_HEADLESS",
+      "wall_ms": 1.7522,
+      "cpu_ms": 0.0,
+      "peak_alloc_kib": 0.11,
+      "rss_delta_kib": 0.0,
+      "notes": "Actual bounded presentation-cache clear; canonical result and settled evidence retained."
+    },
+    {
+      "action": "Reduce RAM",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Old action used multiple ad-hoc session keys; no stable pure baseline service existed."
+    },
+    {
+      "action": "Run Calculation",
+      "variant": "before",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Protected transaction intentionally not executed in a headless fixture benchmark."
+    },
+    {
+      "action": "Run Calculation",
+      "variant": "after",
+      "status": "NOT_MEASURED_LIVE",
+      "wall_ms": null,
+      "cpu_ms": null,
+      "peak_alloc_kib": null,
+      "rss_delta_kib": null,
+      "notes": "Protected transaction intentionally not executed in a headless fixture benchmark; source hash and regression parity are reported separately."
+    }
+  ],
+  "session_state_inventory": {
+    "approximate_bytes": 754052,
+    "cache_entries": 0,
+    "dataframe_count": 0,
+    "largest_retained_objects": [
+      {
+        "key": "canonical_result_20260617",
+        "bytes": 746321
+      },
+      {
+        "key": "summary",
+        "bytes": 4701
+      },
+      {
+        "key": "last_refresh_result_20260621",
+        "bytes": 1667
+      },
+      {
+        "key": "position_sizing_plan_20260619",
+        "bytes": 1121
+      },
+      {
+        "key": "source_data_quality_20260621",
+        "bytes": 527
+      },
+      {
+        "key": "last_manual_refresh_message_20260621",
+        "bytes": 67
+      },
+      {
+        "key": "source_data_signature_20260621",
+        "bytes": 65
+      },
+      {
+        "key": "ai_conversation_memory_20260621",
+        "bytes": 56
+      },
+      {
+        "key": "symbol",
+        "bytes": 47
+      },
+      {
+        "key": "timeframe",
+        "bytes": 43
+      }
+    ]
+  },
+  "copy_short_stats": {
+    "characters": 850,
+    "lines": 25,
+    "estimated_tokens": 213
+  },
+  "copy_all_characters": 1453,
+  "baseline_copy_all_characters": 3557061
+}

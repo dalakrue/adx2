@@ -1,0 +1,105 @@
+{
+  "date": "2026-06-22",
+  "files": [
+    {
+      "path": "core/market_time_freshness_20260622.py",
+      "bytes": 7131,
+      "sha256": "4c6435f9d549f4474dc18d810e2645870463ddd8b264dcdde0e4aa4d6f1adadd"
+    },
+    {
+      "path": "tabs/antd_page_router_20260615.py",
+      "bytes": 32074,
+      "sha256": "9700d23456a802c78c857285be9cf4ca9bcbb91f0c248066fabf610cbcc3190b"
+    },
+    {
+      "path": "core/secure_api_startup_20260619.py",
+      "bytes": 8970,
+      "sha256": "c136519538926ac26fc9979615c6b9c1180b7fce1492109b7aebfa9ba60bab39"
+    },
+    {
+      "path": "core/app/refresh.py",
+      "bytes": 6423,
+      "sha256": "1332fe25bd703f954a01a1568bff51bc537882470785fdff7f5c9e3f90ca1492"
+    },
+    {
+      "path": "core/settings_run_orchestrator_20260617.py",
+      "bytes": 83138,
+      "sha256": "0155f4ab31481c1103f350985df968fe1ad9531a9548c185ee4854c5cc260fb5"
+    },
+    {
+      "path": "core/navigation_parts/connection.py",
+      "bytes": 8378,
+      "sha256": "f280940688b931fe343a7b06f6bb06e6cbbf13e6af57128e1effbcda4cbd42ec"
+    },
+    {
+      "path": "core/finnhub_connector.py",
+      "bytes": 29414,
+      "sha256": "c8587e5ea3ee88bf5c63e31eef8daaae45cbaef8a2a1d1b2fc177c5f137f9ea7"
+    },
+    {
+      "path": "ui/sidebar_fallback_panel.py",
+      "bytes": 19086,
+      "sha256": "5a7a303c4a957dca86a86144bbf7543188b34092e210d07eeae412df38a0e082"
+    },
+    {
+      "path": "ui/main_menu_drawer.py",
+      "bytes": 11185,
+      "sha256": "c3f1826a0c3c3ab41cfccd74ca463d201ece98709d39574e5b15cd8a12dfd4e3"
+    },
+    {
+      "path": "ui/liquid_menu_popup_20260615.py",
+      "bytes": 12052,
+      "sha256": "ee1184cdab20659feb464cf648a969295027e3e4d6aa5ff488be60908a1b13b0"
+    },
+    {
+      "path": "ui/copy_tools.py",
+      "bytes": 5455,
+      "sha256": "9159919aeb548daabb352eca53332e140c45c5d42ab9dfd88630925317588009"
+    },
+    {
+      "path": "core/performance_store_20260619.py",
+      "bytes": 19309,
+      "sha256": "9dfa793f1f8d57c5ee2be0b47868772da6b3b557b706ae3a59e9dbb10c9a10b7"
+    },
+    {
+      "path": "tabs/ai_assistant_compact_20260619.py",
+      "bytes": 14461,
+      "sha256": "1254dfdb92496b10556ce16d4eb9a0a883f529f2938c7b31167d0cd736b90b8a"
+    },
+    {
+      "path": "ui/lunch_four_core_fields_20260619.py",
+      "bytes": 29685,
+      "sha256": "ed6a0dbbcc76fee6a26c6777928cd8a0f8eef00331b51e04260151d6798a7284"
+    },
+    {
+      "path": "tests/test_one_click_freshness_ai_copy_20260622.py",
+      "bytes": 2656,
+      "sha256": "9d47439cf480fb623dbec71c6cf997afc0ac92a95e306909c8c23851e4a6b58e"
+    },
+    {
+      "path": "tests/test_lunch_search_navigation_connectors_20260621.py",
+      "bytes": 6366,
+      "sha256": "b560c641eeea79d02ea2301dd52809deb58e88fdc049c72daceca455a94d4c5c"
+    },
+    {
+      "path": "tests/test_one_click_system_wide_20260618.py",
+      "bytes": 6971,
+      "sha256": "39204bb88a7f512ceeaa34b4410d42bf1fb32519097cb807a80640e46abd913d"
+    },
+    {
+      "path": "tests/test_updated_requirements_20260619.py",
+      "bytes": 3580,
+      "sha256": "c5ef22f8f18f8a72025baba67c3ff9fd5a6c5650f44980e1f83d8da21ae93b39"
+    },
+    {
+      "path": "FIX_REPORT_20260622_ONE_CLICK_FRESHNESS_AI_COPY.md",
+      "bytes": 4674,
+      "sha256": "0804c96976a0b2242ef08e930bfa44e370f216ea0e422d347c7d19205294de73"
+    },
+    {
+      "path": "TEST_RESULTS_20260622_ONE_CLICK_FRESHNESS_AI_COPY.txt",
+      "bytes": 1247,
+      "sha256": "fc35057de60edf42f22c1948550222b8ec80f351148e3df5d873d79ca490d60c"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "measured_at_utc": "2026-06-19T16:13:19.870283+00:00",
+  "environment": {
+    "python": "3.13.5 container; deployment runtime remains Python 3.12",
+    "streamlit_installed": false
+  },
+  "fixture": {
+    "symbol": "EURUSD",
+    "timeframe": "H1",
+    "rows": 1055,
+    "business_days": 44,
+    "latest_completed_h1": "2026-06-19T12:00:00+00:00",
+    "candidate_attempts": 25,
+    "stage2_candidates": 8
+  },
+  "similar_day_engine": {
+    "cold_cpu_seconds": 4.91,
+    "python_tracemalloc_peak_bytes": 1163935,
+    "cache_hit_times_seconds": [
+      0.019274,
+      0.017473,
+      0.01668,
+      0.01849
+    ],
+    "cache_hit_mean_seconds": 0.017979,
+    "cache_test_hit_rate_pct": 80.0,
+    "history_rows": 25,
+    "top_rows": 5,
+    "cache_status_after_repeat": "HIT",
+    "no_lookahead": {
+      "completed_current_candles_only": true,
+      "equal_elapsed_hour_windows": true,
+      "historical_future_excluded_from_features": true,
+      "outcomes_calculated_after_ranking": true,
+      "future_rows_used_in_similarity": 0,
+      "normalization_fit": "historical candidate prefixes only"
+    },
+    "separate_process_function_duration_seconds": 1.96316,
+    "separate_process_max_rss_kb": 299052,
+    "separate_process_total_wall_seconds_including_imports": 4.56,
+    "cold_wall_seconds_with_tracemalloc": 5.327172
+  },
+  "sqlite_feature_store": {
+    "migration_seconds": 0.007482,
+    "persist_25_rows_seconds": 0.015312,
+    "mean_latest_generation_query_seconds": 0.004421,
+    "max_latest_generation_query_seconds": 0.00481,
+    "temporary_db_bytes": 90112,
+    "production_schema_created": true,
+    "production_path": "/mnt/data/adx_work/data/adx_similarity_store.sqlite3",
+    "loaded_generation_ok": true
+  },
+  "same_regression_workload_before_after": {
+    "test_count": 95,
+    "baseline_pytest_result": "95 passed in 13.02s",
+    "modified_pytest_result": "95 passed in 12.63s",
+    "baseline_wall_clock": "0:19.27",
+    "modified_wall_clock": "0:19.07",
+    "baseline_max_rss_kb": 582008,
+    "modified_max_rss_kb": 581068,
+    "interpretation": "No material regression; the small difference is within normal process/test noise and is not claimed as an app-wide improvement."
+  },
+  "static_lifecycle_evidence": {
+    "similar_day_builder_calls_in_run_orchestrator": 1,
+    "similar_day_builder_calls_in_lunch_renderers": 0,
+    "bounded_cache_generations": 2,
+    "cache_ttl_seconds": 21600,
+    "full_dataframe_copies_removed_from_preexisting_paths": 0,
+    "preexisting_duplicate_calculation_paths_removed": 0,
+    "note": "No pre-existing active canonical Similar-Day engine existed. Legacy embedded/demo similar-day code was preserved rather than deleted."
+  },
+  "not_reliably_measured": [
+    "Full live canonical calculation before/after (requires Streamlit plus live/project connector state)",
+    "Actual browser rerun count and iPhone temperature/power draw",
+    "Live Streamlit startup time (Streamlit is not installed in this execution container)",
+    "End-to-end cache hit rate in real user sessions"
+  ]
+}

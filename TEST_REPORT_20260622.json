@@ -1,0 +1,37 @@
+{
+  "date": "2026-06-22",
+  "result": "PASS_FOR_TARGETED_RUNTIME_FIXES",
+  "compileall": "PASS",
+  "focused_and_regression_tests": {
+    "passed": 73,
+    "failed": 0,
+    "areas": [
+      "prediction ledger schema self-healing",
+      "DatetimeIndex time extraction",
+      "broker/Myanmar display projection",
+      "Lunch Field 1 hour reconstruction",
+      "question-specific AI intent routing",
+      "AI answer version/cache invalidation",
+      "single-owner mobile copy controls",
+      "Settings restoration",
+      "six-field Lunch UI",
+      "Streamlit Cloud preflight"
+    ]
+  },
+  "sqlite_health": {
+    "status": "SQLITE",
+    "required_tables_present": [
+      "calculation_runs",
+      "predictions",
+      "prediction_outcomes",
+      "regime_snapshots",
+      "drift_history",
+      "nlp_event_memory"
+    ]
+  },
+  "full_suite": {
+    "collected_tests": 364,
+    "completed": false,
+    "reason": "Execution window exceeded during a long-running causal end-to-end test; no failure was observed before timeout."
+  }
+}
