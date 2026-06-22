@@ -1,0 +1,31 @@
+ADX Quant Pro EURUSD H1 research-risk release verification
+Date: 2026-06-19
+
+PASS  py_compile: all 10 modified Python files
+PASS  import smoke: all 10 modified modules
+PASS  causal 168-bucket hour-of-week normalization
+PASS  future-append leakage invariant
+PASS  finite numeric normalization and sparse fallback
+PASS  CRPS H1-H6 / Energy Score settled-only path
+PASS  competing-risk TP-first / SL-first / neither / censored
+PASS  confidence-sequence incremental accumulator
+PASS  selective fixed grid 50,55,60,65,70,75,80,85,90
+PASS  EVT optional-SciPy + empirical-tail fallback
+PASS  invariance robustness environments
+PASS  informational risk multiplier safety gates
+PASS  robust expectancy qualification-only policy
+PASS  H1 event-cluster risk modifier
+PASS  direction cannot reverse; only confirm/downgrade/WAIT
+PASS  compact ledger persistence (830-byte JSON in stress test)
+PASS  Streamlit headless health endpoint
+PASS  actual guest -> Run Calculation + Open Lunch click
+      61.954 s, zero Streamlit exceptions/errors/warnings on completed H1 fixture
+PASS  navigation preserves canonical run ID
+      Lunch 0.098 s; Settings 0.105 s; Dinner 0.094 s
+PASS  Power BI renderer remains visible
+      12 metrics + existing Plotly projection chart
+
+Research stack benchmark, warm median:
+- 360 OHLC / 133 settled: 2.190 s, 0.678 MB traced allocations
+- 1300 OHLC / 1073 settled: 7.252 s, 3.415 MB traced allocations
+Cold Streamlit health startup: 11.571 s

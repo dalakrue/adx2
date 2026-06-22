@@ -1,0 +1,19 @@
+{
+  "method": "Three isolated process imports of app plus core.app.runner, measured with /usr/bin/time; medians reported.",
+  "before": {
+    "wall_seconds_median": 3.09,
+    "cpu_seconds_median": 4.29,
+    "max_rss_mb_median": 384.27
+  },
+  "after": {
+    "wall_seconds_median": 3.04,
+    "cpu_seconds_median": 4.20,
+    "max_rss_mb_median": 377.90
+  },
+  "observed_change_percent": {
+    "wall_time_reduction": 1.62,
+    "cpu_time_reduction": 2.10,
+    "max_rss_reduction": 1.66
+  },
+  "interpretation": "Startup/import improvement is modest and within normal process variance. The larger expected gain is reduced rerun/render work from lazy database pagination, no duplicate Finder calculation, bounded previews and on-demand export serialization; that benefit depends on the user's real dataset and cannot be honestly converted into a phone-temperature claim in this environment."
+}

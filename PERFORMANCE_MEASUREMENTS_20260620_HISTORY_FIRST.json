@@ -1,0 +1,141 @@
+{
+  "measurement_scope": "Local synthetic completed-H1 workload; no live API/network latency and no browser DOM profiler.",
+  "python": "3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]",
+  "lunch_dispatch": {
+    "before_closed": {
+      "iterations": 25,
+      "total_ms": 519.195,
+      "mean_ms": 20.768,
+      "python_peak_bytes": 1516631,
+      "rss_before_mb": 381.109,
+      "rss_after_mb": 382.023,
+      "rss_delta_mb": 0.914,
+      "heavy_renderer_calls": 200,
+      "calls_per_rerun": 8.0
+    },
+    "after_closed": {
+      "iterations": 25,
+      "total_ms": 0.329,
+      "mean_ms": 0.013,
+      "python_peak_bytes": 1096,
+      "rss_before_mb": 385.688,
+      "rss_after_mb": 385.688,
+      "rss_delta_mb": 0.0,
+      "heavy_renderer_calls": 0,
+      "calls_per_rerun": 0.0
+    },
+    "after_individual_fields": {
+      "Field 1": {
+        "iterations": 10,
+        "total_ms": 47.511,
+        "mean_ms": 4.751,
+        "python_peak_bytes": 1456794,
+        "rss_before_mb": 385.867,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.734,
+        "calls_per_rerun": 2.0
+      },
+      "Field 2": {
+        "iterations": 10,
+        "total_ms": 25.812,
+        "mean_ms": 2.581,
+        "python_peak_bytes": 1450438,
+        "rss_before_mb": 386.602,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.0,
+        "calls_per_rerun": 1.0
+      },
+      "Field 3": {
+        "iterations": 10,
+        "total_ms": 28.329,
+        "mean_ms": 2.833,
+        "python_peak_bytes": 1450338,
+        "rss_before_mb": 386.602,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.0,
+        "calls_per_rerun": 1.0
+      },
+      "Field 4A": {
+        "iterations": 10,
+        "total_ms": 26.327,
+        "mean_ms": 2.633,
+        "python_peak_bytes": 1450438,
+        "rss_before_mb": 386.602,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.0,
+        "calls_per_rerun": 1.0
+      },
+      "Field 4B": {
+        "iterations": 10,
+        "total_ms": 24.182,
+        "mean_ms": 2.418,
+        "python_peak_bytes": 1450388,
+        "rss_before_mb": 386.602,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.0,
+        "calls_per_rerun": 1.0
+      },
+      "Field 6": {
+        "iterations": 10,
+        "total_ms": 25.962,
+        "mean_ms": 2.596,
+        "python_peak_bytes": 1450438,
+        "rss_before_mb": 386.602,
+        "rss_after_mb": 386.602,
+        "rss_delta_mb": 0.0,
+        "calls_per_rerun": 1.0
+      }
+    }
+  },
+  "pipeline_database_payload": {
+    "history_research_transaction": {
+      "duration_ms": 1212.234,
+      "rows_prepared": 229,
+      "python_peak_bytes": 619190,
+      "rss_delta_mb": 1.0,
+      "cache_diagnostics": {
+        "policy": "TinyLFU-style frequency admission + LRU victim",
+        "entries": 3,
+        "bytes": 5941,
+        "max_entries": 16,
+        "max_bytes": 2000000,
+        "hits": 3,
+        "misses": 3,
+        "hit_ratio": 0.5,
+        "admissions": 3,
+        "rejections": 0,
+        "evictions": 0
+      }
+    },
+    "sqlite": {
+      "atomic_write_ms": 297.356,
+      "bounded_queries": {
+        "48": {
+          "ms": 9.032,
+          "rows": 48,
+          "csv_payload_bytes": 19615
+        },
+        "120": {
+          "ms": 9.495,
+          "rows": 96,
+          "csv_payload_bytes": 38800
+        }
+      },
+      "full_export_query_ms": 10.498,
+      "full_export_rows": 96
+    },
+    "m4_plot_payload": {
+      "raw_rows": 10000,
+      "display_rows": 364,
+      "raw_bytes": 573877,
+      "display_bytes": 20876,
+      "reduction_pct": 96.362,
+      "aggregation_ms": 30.725
+    }
+  },
+  "limitations": [
+    "Settings full calculation time cannot be reproduced without the user's authenticated market connector and exact live input generation.",
+    "Closed-Lunch before/after uses identical injected renderer work to isolate UI dispatch behavior.",
+    "RSS is process-level and may retain allocator pages after a benchmark phase."
+  ]
+}
