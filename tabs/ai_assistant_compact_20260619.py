@@ -241,6 +241,78 @@ def _append_ai_history(calc_id: str, question: str, answer: str, mode: str, pack
         st.session_state["ai_history_append_error_20260620"] = repr(exc)
 
 
+
+def _real_related_local_answer(question: str, canonical: Mapping[str, Any], summary: Mapping[str, Any], pack: Mapping[str, Any]) -> dict[str, Any] | None:
+    """Small deterministic trading Q/A layer before the lexical fallback pipeline.
+
+    It answers common Lunch questions from the current published canonical
+    generation: bias, regime, TP/SL, price, probability, risk, freshness and
+    why. It never calls an external API and never invents unavailable fields.
+    """
+    q = _normalize(question)
+    if not q:
+        return None
+    final = canonical.get("final_decision") if isinstance(canonical.get("final_decision"), Mapping) else {}
+    regime = canonical.get("regime") if isinstance(canonical.get("regime"), Mapping) else {}
+    forecasts = canonical.get("forecasts") if isinstance(canonical.get("forecasts"), Mapping) else {}
+    horizons = forecasts.get("horizons") if isinstance(forecasts.get("horizons"), Mapping) else {}
+    selected_h = str(final.get("selected_horizon") or forecasts.get("selected_horizon") or "3")
+    selected = horizons.get(f"{selected_h}h") if isinstance(horizons.get(f"{selected_h}h"), Mapping) else {}
+    current_price = canonical.get("current_price") or canonical.get("last_close") or summary.get("current_price") or pack.get("current_price")
+    direction = str(final.get("directional_market_view") or final.get("final_decision") or canonical.get("full_metric_direction") or pack.get("direction") or "WAIT").upper()
+    decision = str(final.get("final_decision") or pack.get("current_decision") or direction or "WAIT").upper()
+    less_risky = str(final.get("less_risky_decision") or pack.get("less_risky_bias") or direction or "WAIT").upper()
+    major = regime.get("major_regime") or regime.get("regime") or pack.get("directional_regime") or "UNKNOWN"
+    alpha = canonical.get("alpha") or regime.get("alpha") or pack.get("alpha") or "-"
+    delta = canonical.get("delta") or regime.get("delta") or pack.get("delta") or "-"
+    confidence = final.get("calibrated_confidence") or summary.get("calibrated_confidence") or pack.get("calibrated_confidence")
+    selected_tp = selected.get("selected_tp") or canonical.get("selected_tp") or final.get("selected_tp")
+    selected_sl = selected.get("selected_sl") or canonical.get("selected_sl") or final.get("selected_sl")
+    latest = canonical.get("latest_completed_candle_time") or pack.get("latest_completed_h1") or summary.get("latest_completed_h1")
+    reasons = []
+    for src in (final, summary, pack):
+        for key in ("main_reason", "reason", "primary_reason", "conflict_warning"):
+            val = src.get(key) if isinstance(src, Mapping) else None
+            if val not in (None, "") and str(val) not in reasons:
+                reasons.append(str(val))
+    wants = {
+        "bias": any(w in q for w in ("bias", "buy", "sell", "wait", "direction", "enter", "entry", "should i")),
+        "regime": any(w in q for w in ("regime", "alpha", "delta", "transition")),
+        "tp_sl": any(w in q for w in ("tp", "take profit", "sl", "stop", "target")),
+        "risk": any(w in q for w in ("risk", "confidence", "probability", "safe", "reliable", "accuracy")),
+        "time": any(w in q for w in ("time", "hour", "candle", "fresh", "latest")),
+        "why": any(w in q for w in ("why", "reason", "explain")),
+    }
+    if not any(wants.values()):
+        return None
+    lines = ["### Related EURUSD H1 answer", f"- Current decision: **{decision}**", f"- Less-risky bias: **{less_risky}**", f"- Direction authority: **{direction}**"]
+    if wants["regime"] or wants["bias"] or wants["why"]:
+        lines.append(f"- Current regime: **{major}** · Alpha **{alpha}** · Delta **{delta}**")
+    if wants["tp_sl"] or wants["bias"]:
+        lines.append(f"- Current price: **{current_price if current_price not in (None, '') else 'not published'}**")
+        lines.append(f"- Selected TP: **{selected_tp if selected_tp not in (None, '') else 'not published'}**")
+        lines.append(f"- Selected SL: **{selected_sl if selected_sl not in (None, '') else 'not published'}**")
+    if wants["risk"] or wants["bias"]:
+        try:
+            c = float(confidence)
+            if c <= 1.0: c *= 100
+            conf_text = f"{c:.1f}%"
+        except Exception:
+            conf_text = str(confidence or "not published")
+        lines.append(f"- Evidence-calibrated confidence: **{conf_text}**")
+    if wants["time"]:
+        lines.append(f"- Latest completed H1 used: **{latest or 'not published'}**")
+    if wants["why"] or wants["bias"] or wants["regime"]:
+        lines.append("\n**Why this answer:**")
+        if reasons:
+            for r in reasons[:4]:
+                lines.append(f"- {r}")
+        else:
+            lines.append("- The answer uses the published canonical decision, regime, forecast and compact fact pack only.")
+    lines.append("\nNo protected calculation, external API or heavy model was run for this answer.")
+    return {"answer": "\n".join(lines), "status": "LOCAL_RELATED_CANONICAL", "generation_id": str(pack.get("calculation_id") or canonical.get("run_id") or "current"), "evidence": ["canonical.final_decision", "canonical.regime", "canonical.forecasts", "compact_fact_pack"]}
+
+
 def render_compact_ai_assistant() -> None:
     pack = get_ai_fact_pack(st.session_state) or _recover_fact_pack(st.session_state)
     st.caption("Reads the compact canonical fact pack. No analysis or history query runs until Send is pressed.")
@@ -289,7 +361,9 @@ def render_compact_ai_assistant() -> None:
             canonical = get_canonical(st.session_state)
             summary = get_compact_summary(st.session_state)
             plan = st.session_state.get("position_sizing_plan_20260619") or {}
-            result = answer_question(question, canonical=canonical, summary=summary, plan=plan, state=st.session_state)
+            result = _real_related_local_answer(question, canonical if isinstance(canonical, Mapping) else {}, summary if isinstance(summary, Mapping) else {}, pack)
+            if result is None:
+                result = answer_question(question, canonical=canonical, summary=summary, plan=plan, state=st.session_state)
         answer = str(result.get("answer") or "")
         # Reject an answer produced for a replaced generation, except the safe
         # diagnostic context which has no mutable market generation.

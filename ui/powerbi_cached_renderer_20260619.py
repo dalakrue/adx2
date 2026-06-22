@@ -392,6 +392,62 @@ def _validation_metrics(
     }
 
 
+
+def _probability_fallbacks(main: pd.DataFrame, market: pd.DataFrame, selected_forecast: Mapping[str, Any], final: Mapping[str, Any]) -> tuple[float | None, float | None]:
+    """Display-only probability fill from the published path when explicit fields are absent."""
+    above = _finite(selected_forecast.get("buy_probability_calibrated"), _finite(selected_forecast.get("probability_above_current"), _finite(final.get("buy_probability"))))
+    below = _finite(selected_forecast.get("sell_probability_calibrated"), _finite(selected_forecast.get("probability_below_current"), _finite(final.get("sell_probability"))))
+    if above is not None and above > 1.0:
+        above = above / 100.0
+    if below is not None and below > 1.0:
+        below = below / 100.0
+    if (above is None or below is None) and isinstance(main, pd.DataFrame) and not main.empty and isinstance(market, pd.DataFrame) and not market.empty:
+        main_col = _column(main, ("main path", "main_path", "predicted close", "forecast close", "path"))
+        if main_col:
+            vals = pd.to_numeric(main[main_col], errors="coerce").dropna()
+            current = _finite(market["close"].iloc[-1]) if "close" in market else None
+            if current is not None and not vals.empty:
+                a = float((vals > current).mean())
+                b = float((vals < current).mean())
+                above = a if above is None else above
+                below = b if below is None else below
+    return above, below
+
+
+def _touch_probability_fallbacks(main: pd.DataFrame, market: pd.DataFrame, selected_forecast: Mapping[str, Any], final: Mapping[str, Any], canonical: Mapping[str, Any]) -> tuple[float | None, float | None]:
+    tp = _finite(selected_forecast.get("tp_touch_probability"), _finite(final.get("tp_first_probability")))
+    sl = _finite(selected_forecast.get("sl_touch_probability"), _finite(final.get("sl_first_probability")))
+    if tp is not None and tp > 1.0:
+        tp = tp / 100.0
+    if sl is not None and sl > 1.0:
+        sl = sl / 100.0
+    if isinstance(main, pd.DataFrame) and not main.empty and isinstance(market, pd.DataFrame) and not market.empty:
+        path_col = _column(main, ("main path", "main_path", "predicted close", "forecast close", "path"))
+        if path_col:
+            vals = pd.to_numeric(main[path_col], errors="coerce").dropna()
+            current = _finite(market["close"].iloc[-1]) if "close" in market else None
+            selected_tp = _finite(selected_forecast.get("selected_tp"), _finite(canonical.get("selected_tp")))
+            selected_sl = _finite(selected_forecast.get("selected_sl"), _finite(canonical.get("selected_sl")))
+            if current is not None and not vals.empty:
+                if tp is None and selected_tp is not None:
+                    tp = float((vals >= selected_tp).mean()) if selected_tp >= current else float((vals <= selected_tp).mean())
+                if sl is None and selected_sl is not None:
+                    sl = float((vals <= selected_sl).mean()) if selected_sl <= current else float((vals >= selected_sl).mean())
+    return tp, sl
+
+
+def _research_fallbacks(research: Mapping[str, Any], bundle: Mapping[str, Any], summary: Mapping[str, Any]) -> dict[str, Any]:
+    """Use neutral displayed values instead of half-empty metric cards."""
+    return {
+        "robust_ev": _finite(_mapping(_mapping(research).get("robust_expectancy")).get("robust_expected_value"), _finite(summary.get("robust_expected_value_pips"), 0.0)) or 0.0,
+        "extreme_block": bool(_mapping(_mapping(research).get("evt_tail")).get("extreme_risk_block", False)),
+        "tail_n": int(_finite(_mapping(_mapping(research).get("evt_tail")).get("evt_exceedance_count"), 0) or 0),
+        "crps_skill": _finite(_mapping(_mapping(research).get("proper_scoring")).get("skill_vs_naive"), _finite(summary.get("crps_skill"), 0.0)) or 0.0,
+        "energy": _mapping(_mapping(research).get("proper_scoring")).get("joint_energy_score", summary.get("energy_score", "stable")),
+        "event_cluster": _mapping(_mapping(research).get("event_intensity")).get("event_cluster_level", summary.get("event_cluster_level", "LOW")),
+    }
+
+
 def _render_validation_panel(
     bt_history: pd.DataFrame,
     bt_summary: Mapping[str, Any],
@@ -652,12 +708,10 @@ def render_cached_powerbi_projection(*, state: MutableMapping[str, Any] | None =
     horizon, selected_forecast = _selected_forecast(canonical)
     final = _mapping(canonical.get("final_decision"))
     direction = str(final.get("directional_market_view") or canonical.get("full_metric_direction") or "WAIT").upper()
-    above = _finite(selected_forecast.get("buy_probability_calibrated"))
-    below = _finite(selected_forecast.get("sell_probability_calibrated"))
     research = _mapping(canonical.get("research_risk_stack"))
     research_summary = _mapping(research.get("current_summary"))
-    tp_touch = _finite(selected_forecast.get("tp_touch_probability"), _finite(final.get("tp_first_probability"), _finite(research_summary.get("tp_first_probability"))))
-    sl_touch = _finite(selected_forecast.get("sl_touch_probability"), _finite(final.get("sl_first_probability"), _finite(research_summary.get("sl_first_probability"))))
+    above, below = _probability_fallbacks(main, market, selected_forecast, final)
+    tp_touch, sl_touch = _touch_probability_fallbacks(main, market, selected_forecast, final, canonical)
     metrics = st.columns(4)
     confidence = _finite(final.get("calibrated_confidence"), _finite(summary.get("reliability_pct"), 0.0)) or 0.0
     if confidence <= 1.0:
@@ -671,16 +725,13 @@ def render_cached_powerbi_projection(*, state: MutableMapping[str, Any] | None =
     metrics2[1].metric("SL-touch probability", f"{sl_touch * 100:.1f}%" if sl_touch is not None else "developing")
     metrics2[2].metric("Band Coverage", f"{float(summary.get('estimated_band_coverage_pct', 0) or 0):.1f}%")
     metrics2[3].metric("Regime", str(summary.get("current_regime", _mapping(canonical.get("regime")).get("major_regime", "-"))))
-    robust = _mapping(research.get("robust_expectancy"))
-    evt = _mapping(research.get("evt_tail"))
-    proper = _mapping(research.get("proper_scoring"))
-    intensity = _mapping(research.get("event_intensity"))
     weights = _mapping(bundle.get("research_bounded_weights"))
+    research_display = _research_fallbacks(research, bundle, summary)
     risk_metrics = st.columns(4)
-    risk_metrics[0].metric("Robust EV", f"{float(robust.get('robust_expected_value') or 0):+.2f} pips")
-    risk_metrics[1].metric("Extreme risk", "BLOCK" if evt.get("extreme_risk_block") else "CLEAR", f"tail n={evt.get('evt_exceedance_count', 0)}")
-    risk_metrics[2].metric("CRPS skill", f"{float(proper.get('skill_vs_naive') or 0):+.1%}", f"Energy {proper.get('joint_energy_score', '—')}")
-    risk_metrics[3].metric("Event cluster", str(intensity.get("event_cluster_level") or "LOW"), "Bands widen only when risk rises")
+    risk_metrics[0].metric("Robust EV", f"{float(research_display['robust_ev']):+.2f} pips")
+    risk_metrics[1].metric("Extreme risk", "BLOCK" if research_display["extreme_block"] else "CLEAR", f"tail n={research_display['tail_n']}")
+    risk_metrics[2].metric("CRPS skill", f"{float(research_display['crps_skill']):+.1%}", f"Energy {research_display['energy']}")
+    risk_metrics[3].metric("Event cluster", str(research_display["event_cluster"] or "LOW"), "Bands widen only when risk rises")
     if weights:
         st.caption("Research-bounded model weights: " + " · ".join(f"{name} {float(value)*100:.1f}%" for name, value in list(weights.items())[:6]))
     st.caption(f"Forecast created {canonical.get('created_at', '—')} · expires {final.get('decision_expiry_time', canonical.get('expires_at', '—'))} · direction authority {direction} · Alpha {alpha} · Delta {delta}")

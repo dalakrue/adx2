@@ -194,13 +194,158 @@ def _factor_histories(result: Mapping[str, Any]) -> dict[str, pd.DataFrame]:
     return prepared
 
 
+
+def _latest_completed_h1_from_state(state: MutableMapping[str, Any], result: Mapping[str, Any] | None = None) -> Any | None:
+    """Newest completed candle time used to keep Field 1 aligned with Lunch header.
+
+    This is display-only.  It never starts a calculation; it only chooses the
+    freshest already-published timestamp from canonical/freshness/market frames.
+    """
+    stamps: list[pd.Timestamp] = []
+    try:
+        canonical = _canonical(state)
+        for key in ("latest_completed_candle_time", "latest_completed_h1", "anchor_time"):
+            parsed = pd.to_datetime(canonical.get(key), errors="coerce", utc=True)
+            if pd.notna(parsed):
+                stamps.append(pd.Timestamp(parsed))
+    except Exception:
+        pass
+    if isinstance(result, Mapping):
+        latest = _mapping_latest_time(result)
+        if latest is not None:
+            stamps.append(latest)
+    try:
+        from core.market_time_freshness_20260622 import market_time_snapshot
+        fresh = market_time_snapshot(state, query_mt5=False)
+        parsed = pd.to_datetime(fresh.get("latest_loaded_time") or fresh.get("latest_loaded_display"), errors="coerce", utc=True)
+        if pd.notna(parsed):
+            stamps.append(pd.Timestamp(parsed))
+    except Exception:
+        pass
+    for key in ("last_df", "canonical_completed_ohlc_df_20260617", "calculation_staging_ohlc_df_20260617", "dv_pp_df"):
+        latest = _frame_latest_time(state.get(key))
+        if latest is not None:
+            stamps.append(latest)
+    return max(stamps) if stamps else None
+
+
+def _reorder_field1_columns(frame: pd.DataFrame) -> pd.DataFrame:
+    """Move Decision/Direction beside Hour for easier phone reading."""
+    if not isinstance(frame, pd.DataFrame) or frame.empty:
+        return frame
+    columns = [str(c) for c in frame.columns]
+    lower = {str(c).strip().lower(): str(c) for c in frame.columns}
+    hour_col = lower.get("hour")
+    decision_cols = []
+    for col in frame.columns:
+        name = str(col).strip().lower()
+        if name in {"decision", "direction", "current decision", "less risky decision"}:
+            decision_cols.append(str(col))
+    if not hour_col or not decision_cols:
+        return frame
+    new_order: list[str] = []
+    inserted = False
+    for col in columns:
+        if col in decision_cols:
+            continue
+        new_order.append(col)
+        if col == hour_col and not inserted:
+            new_order.extend([c for c in decision_cols if c not in new_order])
+            inserted = True
+    for col in columns:
+        if col not in new_order:
+            new_order.append(col)
+    return frame.loc[:, new_order]
+
+
+def _field1_current_overlay(state: MutableMapping[str, Any], overall: pd.DataFrame, completed_h1: Any | None) -> pd.DataFrame:
+    """Display-only rescue when the metric history cache is older than loaded data.
+
+    Some deployments keep a valid old metric history while the header and other
+    fields have already received a newer completed candle.  Rather than showing
+    02:00 as the top row when the app is on 12:00/13:00, prepend the current
+    already-published priority/market rows and keep protected score columns from
+    the metric history when available.
+    """
+    if not isinstance(overall, pd.DataFrame) or overall.empty or completed_h1 is None:
+        return overall
+    tcol = _time_column(overall)
+    latest_overall = _frame_latest_time(overall) if tcol else None
+    completed = pd.to_datetime(completed_h1, errors="coerce", utc=True)
+    if latest_overall is None or pd.isna(completed) or latest_overall >= completed - pd.Timedelta(minutes=1):
+        return overall
+    # Build rows from already-loaded OHLC/priority caches for the missing hours.
+    priority = _current_priority_table(state, _canonical(state))
+    market = state.get("last_df")
+    if not isinstance(market, pd.DataFrame) or market.empty:
+        return overall
+    mt = _time_column(market)
+    if not mt:
+        return overall
+    work = market.copy(deep=False)
+    parsed = pd.to_datetime(work[mt], errors="coerce", utc=True)
+    mask = parsed.notna() & parsed.gt(latest_overall) & parsed.le(completed)
+    work = work.loc[mask].copy()
+    parsed = parsed.loc[mask]
+    if work.empty:
+        return overall
+    work["__time"] = parsed
+    work = work.sort_values("__time", ascending=False).head(24)
+    rows = []
+    for _, row in work.iterrows():
+        stamp = pd.Timestamp(row["__time"])
+        out = {col: pd.NA for col in overall.columns}
+        if tcol:
+            out[tcol] = stamp.tz_convert("UTC").tz_localize(None) if stamp.tzinfo is not None else stamp
+        if "Date" in overall.columns:
+            out["Date"] = stamp.strftime("%Y-%m-%d 00:00:00")
+        if "Weekday" in overall.columns:
+            out["Weekday"] = stamp.strftime("%A")
+        if "Hour" in overall.columns:
+            out["Hour"] = stamp.strftime("%H:00")
+        for src, dst in (("open", "Open"), ("high", "High"), ("low", "Low"), ("close", "Close")):
+            src_col = next((c for c in work.columns if str(c).lower() in {src, src[0]}), None)
+            if src_col is not None and dst in overall.columns:
+                out[dst] = row.get(src_col)
+        if isinstance(priority, pd.DataFrame) and not priority.empty:
+            prow = priority.iloc[0]
+            for dst, aliases in {
+                "Priority Rank": ("Priority Rank", "priority_rank", "Rank"),
+                "Priority Label": ("Priority Label", "priority_label", "Label"),
+                "Greedy Score": ("Greedy Score", "greedy_score", "Score"),
+                "Decision": ("Decision", "decision", "Current Decision"),
+                "Direction": ("Direction", "direction", "Directional Market View"),
+                "Entry/10": ("Entry/10", "entry_score", "Entry Score"),
+                "BUY /10": ("BUY /10", "BUY/10", "buy_score"),
+                "SELL /10": ("SELL /10", "SELL/10", "sell_score"),
+                "Exit Risk": ("Exit Risk", "exit_risk", "Exit Risk/10"),
+            }.items():
+                hit = next((a for a in aliases if a in priority.columns), None)
+                if hit is not None and dst in overall.columns:
+                    out[dst] = prow.get(hit)
+        rows.append(out)
+    if not rows:
+        return overall
+    patched = pd.concat([pd.DataFrame(rows), overall], ignore_index=True)
+    if tcol in patched.columns:
+        stamps = pd.to_datetime(patched[tcol], errors="coerce", utc=True)
+        patched = patched.loc[stamps.notna()].copy()
+        patched["__sort"] = stamps.loc[patched.index]
+        patched = patched.sort_values("__sort", ascending=False).drop_duplicates(subset=[tcol], keep="first").drop(columns=["__sort"])
+    st.caption("Field 1 is synchronized to the latest loaded H1 candle using already-published market/priority rows; no protected calculation was run.")
+    return patched.reset_index(drop=True)
+
+
 def _render_full_metric_history(state: MutableMapping[str, Any]) -> None:
     result = _metric_result(state)
     if not result or not result.get("ok"):
         st.warning("Full Metric history is not published yet. Run Calculation + Open Lunch in Settings once.")
         return
 
-    overall = _history_25day(result.get("history") if isinstance(result.get("history"), pd.DataFrame) else pd.DataFrame())
+    completed_h1 = _latest_completed_h1_from_state(state, result)
+    overall = _history_25day(result.get("history") if isinstance(result.get("history"), pd.DataFrame) else pd.DataFrame(), completed_h1=completed_h1)
+    overall = _field1_current_overlay(state, overall, completed_h1)
+    overall = _reorder_field1_columns(overall)
     _display_table(
         "Overall Full Metric History — Last 25 Days",
         overall,
@@ -221,7 +366,7 @@ def _render_full_metric_history(state: MutableMapping[str, Any]) -> None:
     tabs = st.tabs(names)
     for tab, name in zip(tabs, names):
         with tab:
-            frame = histories[name]
+            frame = _reorder_field1_columns(histories[name])
             if frame.empty:
                 st.info(f"{name} has no rows in the last 25 days.")
             else:

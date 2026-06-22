@@ -158,7 +158,7 @@ def render_main_menu_drawer(current_tab: str | None = None) -> str:
             st.session_state["ui_navigation_click_ts"] = time.time()
             _safe_rerun()
 
-    drawer_tabs = ["Menu", "Connector", "Timer", "Copy", "UI"]
+    drawer_tabs = ["Menu", "Connector", "Timer", "UI"]
     active = "Menu"
     try:
         from ui.stable_ui_libs_20260615 import tab_choice
@@ -205,10 +205,6 @@ def render_main_menu_drawer(current_tab: str | None = None) -> str:
             _render_timer()
         except Exception as exc:
             st.warning(f"Timer panel failed safely: {exc}")
-        st.markdown('</div>', unsafe_allow_html=True)
-    elif active == "Copy":
-        st.markdown('<div class="new7-liquid-section">', unsafe_allow_html=True)
-        _render_quick_actions()
         st.markdown('</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="new7-liquid-section">', unsafe_allow_html=True)
