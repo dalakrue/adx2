@@ -1,0 +1,8 @@
+Version: new7-eurusd-h1-six-principal-fields-v1-2026-06-21
+Build Date: 2026-06-21
+Base ZIP: b35f040d-6742-441f-af0b-6195b1ba4712.zip uploaded by user
+Scope: exactly six lazy Lunch fields, separate connector refresh, unified bounded copy/export, local grounded AI, display-only readiness, and presentation performance hardening.
+Protected authority: existing completed-H1 canonical Run Calculation transaction and protected decision outputs remain authoritative and byte-for-byte unchanged in audited core files.
+Preferred main entry point: app.py
+Local launch: streamlit run app.py
+Validation: compileall and full repository test results are documented in FULL_TEST_RESULTS_20260621_SIX_FIELD.txt.

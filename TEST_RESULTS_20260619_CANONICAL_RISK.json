@@ -1,0 +1,44 @@
+{
+  "date": "2026-06-19",
+  "environment": {
+    "python_test_runtime": "3.13.5",
+    "project_target_runtime": "3.12",
+    "streamlit_test_runtime": "1.58.0"
+  },
+  "summary": {
+    "isolated_test_files": 20,
+    "tests_passed": 193,
+    "tests_failed": 0,
+    "syntax_compile": "PASS",
+    "canonical_import_smoke": "PASS",
+    "streamlit_health": "PASS",
+    "streamlit_app_test_exceptions": 0
+  },
+  "acceptance_checks": {
+    "python_syntax_compilation": "PASS",
+    "canonical_entry_import": "PASS",
+    "streamlit_startup_health_endpoint": "PASS",
+    "snapshot_schema_validation": "PASS",
+    "database_initialization": "PASS",
+    "atomic_commit_and_rollback": "PASS",
+    "generation_consistency": "PASS",
+    "lunch_finder_generation_match": "PASS",
+    "copy_short_generation_match": "PASS",
+    "copy_all_generation_match": "PASS",
+    "position_sizing_examples": "PASS",
+    "lot_step_round_down": "PASS",
+    "minimum_lot_skip": "PASS",
+    "margin_estimate": "PASS",
+    "aggregate_related_entry_risk": "PASS",
+    "empty_data": "PASS",
+    "timezone_handling": "PASS",
+    "mobile_width_static_review": "PASS",
+    "optional_dependency_fallback": "PASS",
+    "requirements_consistency_review": "PASS"
+  },
+  "notes": [
+    "Every test file passes in a clean isolated Python process.",
+    "A single monolithic pytest process can stall after extensive Streamlit/global-state test reuse; no individual test failure remains.",
+    "Live Streamlit health returned 'ok' and Streamlit AppTest reported zero exceptions."
+  ]
+}

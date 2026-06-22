@@ -1,0 +1,52 @@
+{
+  "data/adx_runtime_store.sqlite3": {
+    "integrity": "ok",
+    "tables": [
+      "ai_conversation",
+      "canonical_summary",
+      "frame_manifest"
+    ],
+    "row_counts": {
+      "ai_conversation": 0,
+      "canonical_summary": 6,
+      "frame_manifest": 0
+    }
+  },
+  "data/canonical_runtime.sqlite3": {
+    "integrity": "ok",
+    "tables": [
+      "performance_trace",
+      "run_snapshots",
+      "runs"
+    ],
+    "row_counts": {
+      "performance_trace": 0,
+      "run_snapshots": 6,
+      "runs": 6
+    }
+  },
+  "data/quant_app.sqlite3": {
+    "integrity": "ok",
+    "tables": [
+      "advanced_reliability_shift_snapshots_v2",
+      "advanced_reliability_shift_vectors_v2",
+      "app_events"
+    ],
+    "row_counts": {
+      "advanced_reliability_shift_snapshots_v2": 0,
+      "advanced_reliability_shift_vectors_v2": 0,
+      "app_events": 177
+    }
+  },
+  "data/adx_similarity_store.sqlite3": {
+    "integrity": "ok",
+    "tables": [
+      "similar_day_feature_store",
+      "similar_day_generations"
+    ],
+    "row_counts": {
+      "similar_day_feature_store": 0,
+      "similar_day_generations": 0
+    }
+  }
+}

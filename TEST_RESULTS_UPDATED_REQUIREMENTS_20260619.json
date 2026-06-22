@@ -1,0 +1,73 @@
+{
+  "release": "Updated Requirements Fully Fixed 2026-06-19",
+  "entrypoint": "app.py",
+  "verification": {
+    "compileall": "PASS",
+    "final_focused_pytest": {
+      "status": "PASS",
+      "tests": 48,
+      "duration_seconds": 12.43,
+      "modules": [
+        "test_updated_requirements_20260619.py",
+        "test_lunch_four_core_fields_20260619.py",
+        "test_similar_day_intelligence_20260619.py",
+        "test_powerbi_path_calibration_20260617.py"
+      ]
+    },
+    "additional_regression_batches": [
+      {
+        "tests": 16,
+        "status": "PASS",
+        "scope": "updated requirements, Lunch, settings, preflight"
+      },
+      {
+        "tests": 36,
+        "status": "PASS",
+        "scope": "Similar-Day engine and renderer"
+      },
+      {
+        "tests": 18,
+        "status": "PASS",
+        "scope": "Power BI, UI restoration, Dinner compatibility, regime navigation"
+      },
+      {
+        "tests": 74,
+        "status": "PASS",
+        "scope": "Finnhub, connectors, one-click, performance, mobile sync"
+      },
+      {
+        "tests": 23,
+        "status": "PASS",
+        "scope": "Full Metric canonical, multiscale, trust, Windows compatibility"
+      },
+      {
+        "tests": 12,
+        "status": "PASS",
+        "scope": "canonical runtime"
+      },
+      {
+        "tests": 10,
+        "status": "PASS",
+        "scope": "causal quant support"
+      },
+      {
+        "tests": 19,
+        "status": "PASS",
+        "scope": "decision product"
+      },
+      {
+        "tests": 33,
+        "status": "PASS",
+        "scope": "research integration"
+      }
+    ],
+    "clean_database_migration_smoke": "PASS",
+    "module_import_smoke": "PASS",
+    "streamlit_health_endpoint": "PASS"
+  },
+  "notes": [
+    "Additional regression batches are reported separately and may overlap; they are not intended to be summed.",
+    "Runtime SQLite files were restored to their original uploaded state after testing.",
+    "No real API secret is included in the package."
+  ]
+}
