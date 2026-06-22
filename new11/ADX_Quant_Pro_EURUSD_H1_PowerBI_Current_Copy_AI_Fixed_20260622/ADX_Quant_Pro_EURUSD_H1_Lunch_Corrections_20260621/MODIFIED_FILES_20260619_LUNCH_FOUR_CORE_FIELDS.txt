@@ -1,0 +1,12 @@
+ui/lunch_four_core_fields_20260619.py (new)
+tabs/final_lunch_upgrade_20260617.py
+tabs/antd_page_router_20260615.py
+ui/antd_navigation_20260615.py
+ui/sidebar_hard_lock.py
+core/app/runner.py
+ui/main_menu_drawer.py
+ui/liquid_menu_popup_20260615.py
+ui/powerbi_cached_renderer_20260619.py
+tests/test_lunch_four_core_fields_20260619.py (new)
+FIX_NOTES_20260619_LUNCH_FOUR_CORE_FIELDS_NO_SIDEBAR.md (new)
+MODIFIED_FILES_20260619_LUNCH_FOUR_CORE_FIELDS.txt (new)

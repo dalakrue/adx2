@@ -1,0 +1,217 @@
+{
+  "manifest_version": "20260621-final",
+  "baseline_git_commit": "fb56477",
+  "modified_existing_files": [
+    {
+      "status": "M",
+      "path": "README.md",
+      "bytes": 2818,
+      "lines": 60,
+      "sha256": "0d7a30fcbaff0baf8dfc9e3db4962e2c0ce6c89cb9dfbd6bc15a123d6d705a31"
+    },
+    {
+      "status": "M",
+      "path": "core/canonical_runtime_20260617.py",
+      "bytes": 44344,
+      "lines": 633,
+      "sha256": "d58c22df90c2634128157d0fda2c036b2220d295461af586b0b74183e18697ff"
+    },
+    {
+      "status": "M",
+      "path": "core/research_validation_store_20260621.py",
+      "bytes": 23116,
+      "lines": 446,
+      "sha256": "9ca8fef68742d20b869a877ef4665524fb3edbb180fcd43cb6ae1acd5293d486"
+    },
+    {
+      "status": "M",
+      "path": "core/settings_run_orchestrator_20260617.py",
+      "bytes": 78877,
+      "lines": 1301,
+      "sha256": "8ec80f621fd092931a09f29a775ed77b57ab9b0353eb3a68cf722072f937e99d"
+    },
+    {
+      "status": "M",
+      "path": "ui/lunch_four_core_fields_20260619.py",
+      "bytes": 26584,
+      "lines": 551,
+      "sha256": "c52ef01b9c3c64ac8d0aade41a9a76c061f25d915150de77552a32f86220926e"
+    }
+  ],
+  "new_files": [
+    {
+      "status": "??",
+      "path": "APP_STARTUP_TEST_20260621.json",
+      "bytes": 467,
+      "lines": 8,
+      "sha256": "a8b5e4965691753071b88886c25a7fd3a16fa0ebfe9c39990594d680f427c3db"
+    },
+    {
+      "status": "??",
+      "path": "ARCHITECTURE_AUDIT_20260621_TEN_PAPER_SHADOW.md",
+      "bytes": 6353,
+      "lines": 87,
+      "sha256": "da8a4da23d88e560aa12dd32e86aac91f1b03b19d7c98e8284e2a3d9c3a75b42"
+    },
+    {
+      "status": "??",
+      "path": "ASSUMPTIONS_THEOREMS_GUARANTEES_20260621.md",
+      "bytes": 4500,
+      "lines": 68,
+      "sha256": "1ab5f0b8b5b6a46ba3dc1b78c8850b8f3606fd18bd463ae4744aba071ecade43"
+    },
+    {
+      "status": "??",
+      "path": "COMPILE_REPORT_20260621_TEN_PAPER.json",
+      "bytes": 180,
+      "lines": 7,
+      "sha256": "563e45763a5081655e479c81ea9f74bda24f9b3b39c6c4566cd7b3dca85df840"
+    },
+    {
+      "status": "??",
+      "path": "DATABASE_MIGRATION_REPORT_20260621.md",
+      "bytes": 2393,
+      "lines": 62,
+      "sha256": "727074397c51fb3d19f19bb5177781d462dce26ab25bb00beeae455d4254ce43"
+    },
+    {
+      "status": "??",
+      "path": "EVIDENCE_LIMITATIONS_20260621_TEN_PAPER.md",
+      "bytes": 1825,
+      "lines": 37,
+      "sha256": "0eea83ae4102d867173df5db0812190b50f6821e92c16e767019865156e1714f"
+    },
+    {
+      "status": "??",
+      "path": "LEAKAGE_CAUSALITY_REPORT_20260621.md",
+      "bytes": 1722,
+      "lines": 34,
+      "sha256": "fb5c95f8fe87317fd6434cc874f7d3476808a729e7cc968c516e1d56486fa960"
+    },
+    {
+      "status": "??",
+      "path": "LEAKAGE_STATIC_SCAN_20260621_TEN_PAPER.json",
+      "bytes": 874,
+      "lines": 21,
+      "sha256": "c96f18810259f522ba74afde3d9c091921bd67f8f08242cd3ea7bf29c060d26e"
+    },
+    {
+      "status": "??",
+      "path": "PERFORMANCE_MEASUREMENTS_20260621_TEN_PAPER.json",
+      "bytes": 7501,
+      "lines": 285,
+      "sha256": "9934e81a21bc663d9a5ca2daa48985aca1c3f06d9d526149f0cb5a321cfb8f30"
+    },
+    {
+      "status": "??",
+      "path": "PERFORMANCE_REPORT_20260621_TEN_PAPER.md",
+      "bytes": 2392,
+      "lines": 36,
+      "sha256": "9b067cd0c2b138420678cd11d94b070f90aeceb3cb8048eddd95d199f7108bf3"
+    },
+    {
+      "status": "??",
+      "path": "RESEARCH_PAPER_TO_CODE_MAPPING_20260621.md",
+      "bytes": 4433,
+      "lines": 23,
+      "sha256": "f67783b7fe8b1fe9d271242f3b132cbb538c84cb7cfa3f2c02a32a9a791f3fc3"
+    },
+    {
+      "status": "??",
+      "path": "ROLLBACK_INSTRUCTIONS_20260621.md",
+      "bytes": 1605,
+      "lines": 49,
+      "sha256": "4f3ce17a2b27da434d77f65d62c960b19b4cfb1a3750c572c5d8f13460525f26"
+    },
+    {
+      "status": "??",
+      "path": "STREAMLIT_CLOUD_DEPLOYMENT_20260621.md",
+      "bytes": 1346,
+      "lines": 45,
+      "sha256": "f54110512b91228f87611c7423e4cac6f43d9d05cc8ea76a2f56b61cb78c286d"
+    },
+    {
+      "status": "??",
+      "path": "STREAMLIT_CLOUD_IMPORT_TEST_20260621.json",
+      "bytes": 932,
+      "lines": 47,
+      "sha256": "a05cd16625a46e12f7eba6ac9d52c67518fcfb8728fee005805d2209ab721c5e"
+    },
+    {
+      "status": "??",
+      "path": "TEST_REPORT_20260621_TEN_PAPER.json",
+      "bytes": 1776,
+      "lines": 42,
+      "sha256": "1ef508b112702d91206b684003c46ec1c2ec42bfbca9b506d5940cf4ba395bbf"
+    },
+    {
+      "status": "??",
+      "path": "TEST_REPORT_20260621_TEN_PAPER.md",
+      "bytes": 3042,
+      "lines": 62,
+      "sha256": "5121932919fe73f82cb14e065c50ac35422db9ba092b68ae26ebdd004ce23194"
+    },
+    {
+      "status": "??",
+      "path": "WINDOWS_POWERSHELL_COMMANDS_20260621.md",
+      "bytes": 1080,
+      "lines": 46,
+      "sha256": "6313c6d9f5427dd52da3ea9aed5085c2ada112c29d29d9bc34669646d8647b1c"
+    },
+    {
+      "status": "??",
+      "path": "core/ten_paper_research_layers_20260621.py",
+      "bytes": 83747,
+      "lines": 1419,
+      "sha256": "770469ac1c1490dcedee4db0dca7c981c2b3ad3ddce39d89dc3b11088f845c84"
+    },
+    {
+      "status": "??",
+      "path": "migrations/20260621_ten_paper_shadow_layers.sql",
+      "bytes": 6420,
+      "lines": 75,
+      "sha256": "f00043ef54afe4f17092faaa6400cdeab690dead3814d54756ec3267a31a8108"
+    },
+    {
+      "status": "??",
+      "path": "tests/test_ten_paper_shadow_layers_20260621.py",
+      "bytes": 15289,
+      "lines": 315,
+      "sha256": "93ddf9b94873aab14a36906f3bb21552f8357f3983385ffc979e887e94e7db59"
+    },
+    {
+      "status": "??",
+      "path": "tools/benchmark_ten_paper_20260621.py",
+      "bytes": 9039,
+      "lines": 167,
+      "sha256": "b81e62ac210cb0d0205260ac443bcaaf2bd775a34cd9b89d586290d52be904be"
+    },
+    {
+      "status": "??",
+      "path": "tools/migrate_ten_paper_20260621.py",
+      "bytes": 5730,
+      "lines": 136,
+      "sha256": "b15c3960939e8dcd4e1c4fd19f58f4463f69ba667048299f26e9f95834c798d9"
+    },
+    {
+      "status": "??",
+      "path": "MODIFIED_FILES_MANIFEST_20260621.json",
+      "note": "This manifest; self-hash intentionally omitted."
+    },
+    {
+      "status": "??",
+      "path": "MODIFIED_FILES_MANIFEST_20260621.md",
+      "note": "Human-readable manifest; self-hash intentionally omitted."
+    }
+  ],
+  "modified_existing_count": 5,
+  "new_file_count": 24,
+  "protected_runtime_database_modified": false,
+  "database_note": "The tracked data/canonical_runtime.sqlite3 was restored to baseline. Schema migration is explicit, backup-first, idempotent, and rollback-capable.",
+  "exclusions_from_final_zip": [
+    ".git/",
+    "__pycache__/",
+    ".pytest_cache/"
+  ],
+  "final_source_file_count_before_packaging": 813
+}
