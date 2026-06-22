@@ -1,0 +1,31 @@
+ADDED
+- .streamlit/secrets.example.toml
+- UPDATED_REQUIREMENTS_IMPLEMENTATION_20260619.md
+- core/medium_standard_regime_bias_20260619.py
+- core/secure_api_startup_20260619.py
+- tests/test_updated_requirements_20260619.py
+- MODIFIED_FILES_UPDATED_REQUIREMENTS_20260619.txt
+- TEST_RESULTS_UPDATED_REQUIREMENTS_20260619.json
+
+MODIFIED
+- .gitignore
+- core/app/runner.py
+- core/config/defaults.py
+- core/connectors/data_parts/session.py
+- core/finnhub_connector.py
+- core/settings_run_orchestrator_20260617.py
+- core/similar_day_intelligence_20260619.py
+- core/tab_state_stability_20260615.py
+- core/ui/legacy_impl/styles_impl.py
+- tabs/antd_page_router_20260615.py
+- tests/test_full_metric_canonical_sync_20260618.py
+- tests/test_lunch_four_core_fields_20260619.py
+- tests/test_similar_day_intelligence_20260619.py
+- ui/antd_navigation_20260615.py
+- ui/liquid_menu_popup_20260615.py
+- ui/lunch_four_core_fields_20260619.py
+- ui/powerbi_cached_renderer_20260619.py
+- ui/similar_day_renderer_20260619.py
+
+REMOVED
+- None

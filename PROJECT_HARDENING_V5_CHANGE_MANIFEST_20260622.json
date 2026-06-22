@@ -1,0 +1,41 @@
+{
+  "build": "PROJECT_HARDENING_V5_20260622",
+  "uploaded_source": "2bf23fe7-c7db-4e69-91ea-06bb7ddc6766.zip",
+  "new_files": [
+    "FINAL_VERIFICATION_REPORT_PROJECT_HARDENING_V5_20260622.md",
+    "PROJECT_HARDENING_V5_CHANGE_MANIFEST_20260622.json",
+    "core/ai_duplicate_guard_20260622.py",
+    "core/history_sync_engine_20260622.py",
+    "core/shared_broker_time_20260622.py",
+    "tests/test_project_hardening_v5_20260622.py"
+  ],
+  "modified_files": [
+    "core/ai_conversation_memory.py",
+    "core/ai_evidence_retrieval.py",
+    "core/ai_grounded_pipeline_20260621.py",
+    "core/ai_intent_router.py",
+    "core/ai_source_registry.py",
+    "core/history_research_pipeline_20260620.py",
+    "core/settings_run_orchestrator_20260617.py",
+    "services/canonical_exports.py",
+    "tabs/ai_assistant_compact_20260619.py",
+    "ui/canonical_copy_export_20260619.py",
+    "ui/copy_tools.py",
+    "ui/home_master_control_bar_20260615.py",
+    "ui/liquid_menu_popup_20260615.py",
+    "ui/lunch_four_core_fields_20260619.py",
+    "ui/main_menu_drawer.py"
+  ],
+  "missing_files": [],
+  "tests": {
+    "relevant_regression_passed": 117,
+    "relevant_regression_failed": 0,
+    "repository_tests_collected": 372
+  },
+  "syntax_validation": {
+    "modified_modules_py_compile": "PASS",
+    "core_ui_tabs_services_compileall": "PASS"
+  },
+  "database_test_artifacts_shipped": false,
+  "performance_note": "30% RAM/CPU is a target; exact reduction requires production telemetry."
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-06-19",
+  "python_test_environment": "3.13.5",
+  "declared_runtime": "3.12",
+  "compileall": {"command": "python -m compileall .", "status": "PASS"},
+  "pytest": {
+    "status": "PASS",
+    "collected": 179,
+    "passed": 179,
+    "failed": 0,
+    "execution_note": "Executed across grouped project test-file runs to avoid third-party pytest plugin shutdown delays."
+  },
+  "streamlit_health": {"command": "streamlit run main.py --server.headless true --server.port 8765", "status": "PASS", "health": "ok"},
+  "streamlit_apptest_main": {"status": "PASS", "exceptions": 0, "errors": 0},
+  "streamlit_apptest_lunch_ui": {"status": "PASS", "exceptions": 0, "errors": 0},
+  "dependency_resolution": {"command": "python -m pip install --dry-run -r requirements.txt", "status": "PASS"},
+  "live_validation_not_run": ["live Finnhub credentials", "live broker/MetaTrader feed", "production database with long settled history"]
+}

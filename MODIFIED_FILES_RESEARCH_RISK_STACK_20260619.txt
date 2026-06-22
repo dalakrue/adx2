@@ -1,0 +1,13 @@
+core/research_risk_stack_20260619.py (new)
+core/settings_run_orchestrator_20260617.py
+core/canonical_runtime_20260617.py
+core/compact_canonical_20260619.py
+core/causal_quant_support_20260618.py
+core/prediction_ledger_20260617.py
+ui/trusted_operational_metrics_20260619.py
+ui/full_metric_history_center_20260619.py
+ui/powerbi_cached_renderer_20260619.py
+tabs/clean_decision_regime_ui_20260614.py
+IMPLEMENTATION_REPORT_20260619_RESEARCH_RISK_STACK.md (new)
+TEST_RESULTS_20260619_RESEARCH_RISK_STACK.txt (new)
+MODIFIED_FILES_RESEARCH_RISK_STACK_20260619.txt (new)

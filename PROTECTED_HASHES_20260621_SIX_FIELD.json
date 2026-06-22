@@ -1,0 +1,50 @@
+[
+  {
+    "file": "core/settings_run_orchestrator_20260617.py",
+    "original_sha256": "bdedf3fd39ec5f36f07187ae0efdcd957d21b9a68898178eb2958781fae19745",
+    "upgraded_sha256": "bdedf3fd39ec5f36f07187ae0efdcd957d21b9a68898178eb2958781fae19745",
+    "identical": true
+  },
+  {
+    "file": "core/decision_product_engine_20260617.py",
+    "original_sha256": "e26c948f88a96f3af4881a2d0e1b06738b4f5b9e2a872b002d8d0aa8aabdfe76",
+    "upgraded_sha256": "e26c948f88a96f3af4881a2d0e1b06738b4f5b9e2a872b002d8d0aa8aabdfe76",
+    "identical": true
+  },
+  {
+    "file": "core/canonical_runtime_20260617.py",
+    "original_sha256": "2d5b1007290b5cf92a493fcebb92353b24cf4af9a1025036cf88b1e869c0bf89",
+    "upgraded_sha256": "2d5b1007290b5cf92a493fcebb92353b24cf4af9a1025036cf88b1e869c0bf89",
+    "identical": true
+  },
+  {
+    "file": "core/decision_policy_20260617.py",
+    "original_sha256": "eab139958c687022bc8ae5fc938ba5f56a11cfe3effa0736278d038006c72739",
+    "upgraded_sha256": "eab139958c687022bc8ae5fc938ba5f56a11cfe3effa0736278d038006c72739",
+    "identical": true
+  },
+  {
+    "file": "core/medium_standard_regime_bias_20260619.py",
+    "original_sha256": "f2707d52797467d14c8f361c34db716592b8020e01643b28a57f61853e475214",
+    "upgraded_sha256": "f2707d52797467d14c8f361c34db716592b8020e01643b28a57f61853e475214",
+    "identical": true
+  },
+  {
+    "file": "core/prediction_ledger_20260617.py",
+    "original_sha256": "2e978556c005ac48c2d4e1df50dadfc3877db417d15a707951674b0c19e4ca0a",
+    "upgraded_sha256": "2e978556c005ac48c2d4e1df50dadfc3877db417d15a707951674b0c19e4ca0a",
+    "identical": true
+  },
+  {
+    "file": "services/position_sizing.py",
+    "original_sha256": "63231cb600f05f0f95e90a4259f7279fb3a50d4ba2e47b0cb8b36f0df775de8e",
+    "upgraded_sha256": "63231cb600f05f0f95e90a4259f7279fb3a50d4ba2e47b0cb8b36f0df775de8e",
+    "identical": true
+  },
+  {
+    "file": "core/adx_shared_sync_20260615.py",
+    "original_sha256": "fb105747dd08d815157f526a88cc5662231dfeecf402c8ab103a29f0ee31c609",
+    "upgraded_sha256": "fb105747dd08d815157f526a88cc5662231dfeecf402c8ab103a29f0ee31c609",
+    "identical": true
+  }
+]
