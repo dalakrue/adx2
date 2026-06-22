@@ -178,6 +178,72 @@ def _powerbi_error_context(state: Mapping[str, Any], bundle: Mapping[str, Any]) 
     return list(dict.fromkeys(m for m in messages if m))
 
 
+
+
+def _latest_market_point(market: pd.DataFrame) -> tuple[pd.Timestamp | None, float | None]:
+    """Return latest completed candle time/close from the same market frame used by Lunch.
+
+    Display-only cache fragments can contain an anchor row or one stale row from
+    the previous generation.  The renderer must not replace data silently, but it
+    can discard non-future display rows and keep the latest completed candle as
+    the single authority for Field 1 and Field 2.
+    """
+    if not isinstance(market, pd.DataFrame) or market.empty or "time" not in market or "close" not in market:
+        return None, None
+    ordered = market.dropna(subset=["time", "close"]).sort_values("time")
+    if ordered.empty:
+        return None, None
+    return pd.Timestamp(ordered["time"].iloc[-1]), float(ordered["close"].iloc[-1])
+
+
+def _filter_strict_future(frame: pd.DataFrame, latest: pd.Timestamp | None) -> pd.DataFrame:
+    """Display-only filter: remove anchor/current/stale rows before validation/charting."""
+    if latest is None or not isinstance(frame, pd.DataFrame) or frame.empty:
+        return frame if isinstance(frame, pd.DataFrame) else pd.DataFrame()
+    t = _column(frame, ("time", "future time", "datetime", "timestamp", "date", "projection time", "target time"))
+    if not t:
+        return frame
+    out = frame.copy(deep=False)
+    times = pd.to_datetime(out[t], errors="coerce", utc=True)
+    out = out.loc[times.notna() & (times > latest)].copy()
+    return out.reset_index(drop=True)
+
+
+def _aligned_powerbi_inputs(
+    market: pd.DataFrame,
+    bundle: Mapping[str, Any],
+    future_candles: pd.DataFrame,
+) -> tuple[Mapping[str, Any], pd.DataFrame, list[str]]:
+    """Keep Field 2 synchronized to the latest completed H1 candle.
+
+    This does not run a model and does not fabricate forecasts.  It only removes
+    non-future display rows from already-published caches and replaces a stale
+    summary anchor with the current completed close when the path itself is now
+    future-only.  The correction is shown in a caption, not hidden.
+    """
+    latest, close = _latest_market_point(market)
+    notes: list[str] = []
+    if latest is None:
+        return bundle, future_candles, notes
+    out = dict(bundle) if isinstance(bundle, Mapping) else {}
+    main = out.get("main") if isinstance(out.get("main"), pd.DataFrame) else pd.DataFrame()
+    filtered_main = _filter_strict_future(main, latest)
+    if isinstance(main, pd.DataFrame) and len(filtered_main) != len(main):
+        notes.append(f"Removed {len(main) - len(filtered_main)} non-future cached Power BI display row(s) so the path starts after {latest.isoformat()}.")
+        out["main"] = filtered_main
+    filtered_candles = _filter_strict_future(future_candles, latest)
+    if isinstance(future_candles, pd.DataFrame) and len(filtered_candles) != len(future_candles):
+        notes.append(f"Removed {len(future_candles) - len(filtered_candles)} non-future blue candle row(s).")
+    summary = dict(_mapping(out.get("summary")))
+    if close is not None:
+        old_anchor = _finite(summary.get("anchor_price"))
+        if old_anchor is not None and abs(old_anchor - close) > max(abs(close) * 1e-8, 1e-8):
+            summary["anchor_price"] = close
+            summary["anchor_time"] = latest.isoformat()
+            notes.append("Aligned display anchor to the latest completed candle close used by Lunch Field 1.")
+        out["summary"] = summary
+    return out, filtered_candles, notes
+
 def _validation(
     market: pd.DataFrame,
     main: pd.DataFrame,
@@ -563,6 +629,7 @@ def render_cached_powerbi_projection(*, state: MutableMapping[str, Any] | None =
             st.code("No calibrated Power BI bundle was stored. Check Settings → Errors / Fix Fast.")
         return
 
+    bundle, future_candles, alignment_notes = _aligned_powerbi_inputs(market, bundle, future_candles)
     main = bundle.get("main") if isinstance(bundle.get("main"), pd.DataFrame) else pd.DataFrame()
     summary = _mapping(bundle.get("summary"))
     valid, issues = _validation(market, main, future_candles, summary, canonical)
@@ -572,6 +639,8 @@ def render_cached_powerbi_projection(*, state: MutableMapping[str, Any] | None =
         for issue in issues:
             st.code(issue)
         return
+    if alignment_notes:
+        st.info("Power BI display synchronized to current completed H1 candle: " + " ".join(alignment_notes))
 
     alpha, delta = _regime_alpha_delta(state, canonical)
     last_main = None

@@ -152,10 +152,10 @@ def _render_runtime_actions(location_key: str) -> None:
                 st.caption(f"Full: {stats.lines} lines")
                 central_copy_button("Copy Full", payload, f"{location_key}_direct_full_inline_{generation_identity(canonical)[:16]}", height=70, show_fallback=False)
             else:
-                st.caption("Copy Full after Run")
+                st.button("📋 Copy Full", key=f"{location_key}_direct_full_unavailable_20260622", disabled=True, use_container_width=True)
         except Exception as exc:
             st.caption(f"Full copy unavailable: {str(exc)[:60]}")
-    st.caption("Run Calculation and Reduce RAM are intentionally hidden here. Use the one-click Settings calculation to publish and open Lunch.")
+    st.caption("Use Settings one-click calculation to publish Lunch data.")
     _render_refresh_status()
 
 

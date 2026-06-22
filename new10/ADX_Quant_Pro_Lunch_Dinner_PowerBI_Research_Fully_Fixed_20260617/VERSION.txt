@@ -1,7 +1,0 @@
-Version: new7-finnhub-one-click-lunch-regime-powerbi-quickfix-2026-06-17
-Build Date: 2026-06-17
-Base ZIP: d3f1570d-a356-4b06-8756-3b9793e6028a.zip uploaded by user
-Scope: Settings Finnhub connector, one-click calculation-to-Lunch flow, middle-right moving menu, 1D/5D/25D regime standards, vertical PowerBI Alpha/Delta and lower/upper bounds
-Core protection: Existing trading, prediction, ML, regime and PowerBI functions are reused; new code orchestrates caches and adds display-level aggregation/visualization only
-Main entry point: app.py
-Validation: compileall PASS; architecture PASS; final synchronization PASS; Finnhub/NLP/Lunch/Research PASS; Streamlit AppTest PASS; HTTP startup PASS

@@ -105,7 +105,7 @@ def render_direct_canonical_copy_buttons(
         st.button("📋 Copy Short", key=f"{location}_copy_short_unavailable_20260622", disabled=True, use_container_width=True)
         if include_full:
             st.button("📋 Copy Full", key=f"{location}_copy_full_unavailable_20260622", disabled=True, use_container_width=True)
-        st.caption("Copy becomes active after the one Settings calculation publishes a completed generation.")
+        st.caption("Active after Settings run.")
         return
     summary = get_compact_summary(state)
     plan = dict(state.get("position_sizing_plan_20260619") or {})
