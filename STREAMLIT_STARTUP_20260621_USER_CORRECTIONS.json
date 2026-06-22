@@ -1,7 +1,0 @@
-{
-  "passed": true,
-  "running_after_12_seconds": true,
-  "returncode_after_stop": 0,
-  "expected_entry_command": "streamlit run app.py",
-  "observed_start_message": "Uvicorn server started on 127.0.0.1:8765"
-}
