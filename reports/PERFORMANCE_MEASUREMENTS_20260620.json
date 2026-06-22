@@ -1,0 +1,107 @@
+{
+  "measured_at_utc": "2026-06-20T15:57:15.385602+00:00",
+  "python_runtime": "3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]",
+  "scope": "Representative bounded synthetic benchmark: 720 completed H1 rows and 3000 chronological settled rows. Baseline measures normalization plus top-level canonical copy; advanced measures the complete hidden live research transaction with persistence disabled.",
+  "baseline": {
+    "runs": 5,
+    "median_elapsed_seconds": 0.1261935210000047,
+    "min_elapsed_seconds": 0.11907577900001343,
+    "max_elapsed_seconds": 0.12855525200006923,
+    "median_tracemalloc_peak_bytes": 3442436,
+    "max_tracemalloc_peak_bytes": 3444099,
+    "median_rss_delta_bytes": 0,
+    "max_rss_after_bytes": 381067264
+  },
+  "advanced_layer": {
+    "runs": 5,
+    "median_elapsed_seconds": 4.032000689999904,
+    "min_elapsed_seconds": 3.8729517560000204,
+    "max_elapsed_seconds": 4.122789912000144,
+    "median_tracemalloc_peak_bytes": 3442731,
+    "max_tracemalloc_peak_bytes": 3445002,
+    "median_rss_delta_bytes": 221184,
+    "max_rss_after_bytes": 382742528
+  },
+  "incremental_median_seconds": 3.9058071689998997,
+  "raw_runs": {
+    "baseline": [
+      {
+        "elapsed_seconds": 0.12855525200006923,
+        "tracemalloc_peak_bytes": 3443763,
+        "rss_before_bytes": 380801024,
+        "rss_after_bytes": 381067264,
+        "rss_delta_bytes": 266240
+      },
+      {
+        "elapsed_seconds": 0.1261935210000047,
+        "tracemalloc_peak_bytes": 3444099,
+        "rss_before_bytes": 381067264,
+        "rss_after_bytes": 381067264,
+        "rss_delta_bytes": 0
+      },
+      {
+        "elapsed_seconds": 0.12544416599985198,
+        "tracemalloc_peak_bytes": 3441564,
+        "rss_before_bytes": 381067264,
+        "rss_after_bytes": 381067264,
+        "rss_delta_bytes": 0
+      },
+      {
+        "elapsed_seconds": 0.12764818300001934,
+        "tracemalloc_peak_bytes": 3442009,
+        "rss_before_bytes": 381067264,
+        "rss_after_bytes": 381067264,
+        "rss_delta_bytes": 0
+      },
+      {
+        "elapsed_seconds": 0.11907577900001343,
+        "tracemalloc_peak_bytes": 3442436,
+        "rss_before_bytes": 381067264,
+        "rss_after_bytes": 381067264,
+        "rss_delta_bytes": 0
+      }
+    ],
+    "advanced_layer": [
+      {
+        "elapsed_seconds": 4.0665702659998715,
+        "tracemalloc_peak_bytes": 3445002,
+        "rss_before_bytes": 381067264,
+        "rss_after_bytes": 381800448,
+        "rss_delta_bytes": 733184
+      },
+      {
+        "elapsed_seconds": 4.122789912000144,
+        "tracemalloc_peak_bytes": 3442731,
+        "rss_before_bytes": 381800448,
+        "rss_after_bytes": 382021632,
+        "rss_delta_bytes": 221184
+      },
+      {
+        "elapsed_seconds": 4.023224237000022,
+        "tracemalloc_peak_bytes": 3441886,
+        "rss_before_bytes": 382021632,
+        "rss_after_bytes": 382742528,
+        "rss_delta_bytes": 720896
+      },
+      {
+        "elapsed_seconds": 4.032000689999904,
+        "tracemalloc_peak_bytes": 3442359,
+        "rss_before_bytes": 382742528,
+        "rss_after_bytes": 382742528,
+        "rss_delta_bytes": 0
+      },
+      {
+        "elapsed_seconds": 3.8729517560000204,
+        "tracemalloc_peak_bytes": 3443554,
+        "rss_before_bytes": 382742528,
+        "rss_after_bytes": 382742528,
+        "rss_delta_bytes": 0
+      }
+    ]
+  },
+  "claims_not_made": [
+    "No phone-temperature measurement was performed.",
+    "No production accuracy improvement is claimed.",
+    "This is not a whole-app end-to-end latency benchmark."
+  ]
+}
